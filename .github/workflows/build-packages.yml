@@ -16,7 +16,7 @@ jobs:
 
       - name: Install build tools
         run: |
-          dnf install -y rpm-build rpmdevtools tar
+          dnf install -y rpm-build rpmdevtools tar gzip
 
       - name: Setup RPM build environment
         run: rpmdev-setuptree
@@ -29,10 +29,10 @@ jobs:
           tar czvf count-files-1.0.tar.gz count-files-1.0
 
       - name: Copy spec file
-        run: cp rpm/count-files.spec ~/rpmbuild/SPECS/
+        run: cp rpm/count_files.spec ~/rpmbuild/SPECS/
 
       - name: Build RPM
-        run: rpmbuild -ba ~/rpmbuild/SPECS/count-files.spec
+        run: rpmbuild -ba ~/rpmbuild/SPECS/count_files.spec
 
       - name: Upload RPM artifact
         uses: actions/upload-artifact@v4
@@ -55,6 +55,7 @@ jobs:
           mkdir -p build/count-files-1.0
           cp count_files.sh build/count-files-1.0/
           cp -r debian build/count-files-1.0/
+          chmod +x build/count-files-1.0/debian/rules
 
       - name: Build DEB
         run: |
