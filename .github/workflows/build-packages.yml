@@ -29,7 +29,7 @@ jobs:
           tar czvf count-files-1.0.tar.gz count-files-1.0
 
       - name: Copy spec file
-        run: cp packaging/rpm/count-files.spec ~/rpmbuild/SPECS/
+        run: cp rpm/count-files.spec ~/rpmbuild/SPECS/
 
       - name: Build RPM
         run: rpmbuild -ba ~/rpmbuild/SPECS/count-files.spec
@@ -54,7 +54,7 @@ jobs:
         run: |
           mkdir -p build/count-files-1.0
           cp count_files.sh build/count-files-1.0/
-          cp -r packaging/deb/debian build/count-files-1.0/
+          cp -r debian build/count-files-1.0/
 
       - name: Build DEB
         run: |
